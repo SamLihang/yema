@@ -8,6 +8,7 @@
 # install dependencies
 npm install
 
+修改 config》index.js的host和port为电脑 ip （方便手机调试）
 # serve with hot reload at localhost:8080
 npm run dev
 
