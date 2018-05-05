@@ -2,21 +2,17 @@
   <div class="task_cell">
     <div class="task_header rowBetweenNoWarp">
         <div class="task_msg rowCenterNoWarp">
-            <div class="userImg rowCenterNoWarp">
-                <img src="../assets/imgs/temporary_touxiang.jpg" alt="">
-            </div>
-            <h5>抖音号: {{data.id}}</h5>
+            <h2>抖音号: {{data.id}}</h2>
         </div>
+        <button class="deepBlue">复制</button>
         <div class="task_tim rowCenterNoWarp">
-            <img src="../assets/imgs/Icon_love.png" alt="">
+            <img src="../assets/imgs/Icon_Point.png" alt="">
             <p>{{creatTime}}</p>
         </div>
     </div>
-    <img src="../assets/imgs/temporary_douyin.jpg" alt="" class="douyin">
     <div class="task_content">
-        <h2 class="task_remarks">备注: {{data.remarks}}</h2>
-        <p>Give the thumbs-up</p>
-        <h5>当前剩余数量： {{data.count}}单</h5>
+        <h3 class="task_remarks">备注: {{data.remarks}}</h3>
+        <p>当前剩余数量: {{data.count}}单</p>
     </div>
     <div class="task_footer rowBetweenNoWarp">
         <div class="task_visit rowStartNoWarp">
@@ -37,7 +33,7 @@ export default {
     name: 'TaskCell',
     data () {
         return {
-            data: {"id":1,"createUser":1,"status":2,"createTime":1525452115000,"count":5,"remarks":"备注","visit":18}
+            data: {"id":1,"createUser":1,"status":2,"createTime":1525452115000,"count":5,"remarks":"备注","visit":18,"hot": true}
         }
     },
     props: {
@@ -66,19 +62,19 @@ export default {
         box-shadow: 0 1px 15px #e7e7e7;          
         .task_header{
             .task_msg{
-                .userImg{
-                    width: 4rem;
-                    height: 3.5rem;
-                    background: url(../assets/imgs/bc_userImg.png) center center no-repeat;
-                    background-size: cover;
-                    img{
-                        width: 3rem;
-                        border-radius: 50%;
-                    }
+                h2{
+                    font-weight: 600;
                 }
-                h5{
-                    text-indent: .5rem;
-                    font-weight: 500;
+            }
+            button{
+                width: 3.5rem;
+                height: 1.8rem;
+                border-radius: 1rem;
+                color: #fff;
+                font-size: $fts;
+                &.deepBlue{
+                    background: linear-gradient(right, #00ccff, #00a8ff);
+                    box-shadow: 0 4px 12px #7beeff;
                 }
             }
             .task_tim{
@@ -96,16 +92,14 @@ export default {
             margin: 1rem 0 0;
         }
         .task_content{
-            h2{
-                font-weight: 600;
-            }
-            h5{
+            h3{
                 margin-top: .5rem;
-                color: #aaa;
+                color: #8d8d8d; 
+                font-weight: 600;
             }
             p{
-                font-weight: 600;
-                color: #aaa;
+                font-size: 1.3rem;
+                color: #cacaca;
             }
         }
         .task_footer{
@@ -118,7 +112,7 @@ export default {
                 p{
                     text-indent: .5rem;
                     font-weight: 500;
-                    color: #aaa
+                    color: #ffb1a8
                 }
             }
             .task_button{
