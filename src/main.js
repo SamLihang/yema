@@ -8,6 +8,7 @@ import router from './router'
 import fastclick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 import '../node_modules/amfe-flexible/index.js'
+import '../static/css/common.css'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)

@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <y-header />
     <router-view/>
+    <y-footer />
   </div>
 </template>
 
 <script>
+import YFooter from './components/YFooter'
+import YHeader from './components/YHeader'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    YHeader,
+    YFooter
+  }
 }
 </script>
 
@@ -16,8 +23,5 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
