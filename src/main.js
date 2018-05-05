@@ -9,6 +9,7 @@ import fastclick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 import '../node_modules/amfe-flexible/index.js'
 import '../static/css/common.css'
+import '../src/assets/scss/global.scss'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
@@ -19,6 +20,12 @@ Vue.use(VueLazyload, {
   attempt: 1, //尝试次数
 })
 fastclick.attach(document.body)
+
+Vue.prototype.rem2px = function (rem) {
+  let fts = document.documentElement.style.fontSize
+  let px = parseFloat(rem) * parseFloat(fts)
+  return parseInt(px)
+}
 
 /* eslint-disable no-new */
 new Vue({

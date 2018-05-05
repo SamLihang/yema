@@ -1,5 +1,5 @@
 <template>
-    <div class="main rowBetweenNoWarp">
+    <div class="main rowBetweenNoWarp" :style="{height:height+'px'}">
         <router-link to="" class="footerIcon colCenterNoWarp">
             <img src="../assets/imgs/Icon_Home.png" alt="">
             <p>任务大厅</p>
@@ -17,22 +17,27 @@
 
 <script>
 export default {
-  name: 'YFooter',
-  data () {
-    return {
+    name: 'YFooter',
+    data () {
+        return {
 
+        }
+    },
+    props: {
+        height: {
+            type: Number,
+            default: 50
+        }
     }
-  }
 }
 </script>
 
 <style scoped lang="scss">
     .main{
         width: 100%;
-        height: 4.5rem;
         position: fixed;
-        bottom: 0;
         left: 0;
+        bottom: 0;
         overflow: hidden;
         background: linear-gradient(left, #ff728b, #fe987e);
         .footerIcon{

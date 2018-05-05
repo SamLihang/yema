@@ -1,24 +1,29 @@
 <template>
-    <div class="main rowCenterNoWarp">
+    <div class="main rowCenterNoWarp" :style="{height:height+'px'}">
         <h1>抖音</h1>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'YHeader',
-  data () {
-    return {
+    name: 'YHeader',
+    data () {
+        return {
 
+        }
+    },
+    props: {
+        height: {
+            type: Number,
+            default: 50
+        }
     }
-  }
 }
 </script>
 
 <style scoped lang="scss">
     .main{
         width: 100%;
-        height: 3.8rem;
         position: fixed;
         top: 0;
         left: 0;

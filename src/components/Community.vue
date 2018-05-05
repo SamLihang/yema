@@ -1,18 +1,23 @@
 <template>
-    <div class="main">
-        <div class="test">
-            
-        </div>
+    <div class="main colStartNoWarp">
+        <task-bar />
+        <task-cell />
     </div>
 </template>
 
 <script>
+import TaskBar from '../components/TaskBar'
+import TaskCell from '../components/TaskCell'
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {
+    name: 'HelloWorld',
+    data () {
+        return {
+        }
+    },
+    components: {
+        TaskBar,
+        TaskCell,
     }
-  }
 }
 </script>
 

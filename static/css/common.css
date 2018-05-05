@@ -209,14 +209,9 @@ p{
 /* btn动画 */
 button{
     border: none;
-    font-size: 1.3rem;
-    font-weight: 500;
     color: white;
     text-align: center;
     white-space: nowrap;
-    height: 3rem;
-    letter-spacing: 5px;
-    background: #60BA72;
     -webkit-transition: opacity .3s ease-in-out, transform .3s ease-in-out;
     -moz-transition: opacity .3s ease-in-out, transform .3s ease-in-out;
     transition: opacity .3s ease-in-out, transform .3s ease-in-out;
