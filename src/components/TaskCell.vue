@@ -1,5 +1,6 @@
 <template>
   <div class="task_cell">
+    <div class="tast_hot" v-if="data.hot"/>
     <div class="task_header rowBetweenNoWarp">
         <div class="task_msg rowCenterNoWarp">
             <h2>抖音号: {{data.id}}</h2>
@@ -58,8 +59,18 @@ export default {
         margin-top: 1rem;
         box-sizing: border-box;
         border-radius: 4px;
+        position: relative;
         background-color: #fff;
-        box-shadow: 0 1px 15px #e7e7e7;          
+        box-shadow: 0 1px 15px #e7e7e7;    
+        .tast_hot{
+            width: 4rem;
+            height: 4rem;
+            top: -.9rem;
+            right: -1rem;
+            position: absolute;
+            background: url(../assets/imgs/Icon_Hot.png);
+            background-size: 100% 100%
+        }      
         .task_header{
             .task_msg{
                 h2{
