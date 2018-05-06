@@ -8,7 +8,7 @@
         <button class="deepBlue">复制</button>
         <div class="task_tim rowCenterNoWarp">
             <img src="../assets/imgs/Icon_Point.png" alt="">
-            <p>{{creatTime}}</p>
+            <p>{{createTime}}</p>
         </div>
     </div>
     <div class="task_content">
@@ -41,7 +41,7 @@ export default {
 
     },
     computed: {
-        creatTime () {
+        createTime () {
             let time = new Date(this.data.createTime)
             let Y = time.getFullYear()
             let h = time.getHours()

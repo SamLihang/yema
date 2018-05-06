@@ -1,6 +1,6 @@
 <template>
     <div class="main rowBetweenNoWarp" :style="{height:height+'px'}">
-        <router-link to="" class="footerIcon colCenterNoWarp">
+        <router-link to="/community" class="footerIcon colCenterNoWarp">
             <img src="../assets/imgs/Icon_Home.png" alt="">
             <p>任务大厅</p>
         </router-link>
@@ -8,7 +8,7 @@
             <img src="../assets/imgs/Icon_Appl.png" alt="">
             <p>发布任务</p>
         </router-link>
-        <router-link to="" class="footerIcon colCenterNoWarp">
+        <router-link to="mine" class="footerIcon colCenterNoWarp">
             <img src="../assets/imgs/Icon_Self.png" alt="">
             <p>我的</p>
         </router-link>

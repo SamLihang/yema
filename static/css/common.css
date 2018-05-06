@@ -208,6 +208,8 @@ p{
 
 /* btn动画 */
 button{
+    padding: 0;
+    margin: 0;
     border: none;
     color: white;
     text-align: center;

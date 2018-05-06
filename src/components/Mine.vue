@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="mine_content">
-      <y-cell class="cell">
+      <y-cell class="cell" link="/MyTask">
         <img src="../assets/imgs/Icon_cmar.png" class="icons" alt="" slot="icon">
         <h3 slot="text">我发布的任务</h3>
       </y-cell>
@@ -71,8 +71,11 @@ export default {
         right: 1rem;
       }
       .mine_msg{
-        padding-top: 20%;
-        padding: 8rem 3rem 0;
+        position: absolute;
+        bottom: 6rem;
+        padding: 0 3rem;
+        width: 100%;
+        box-sizing: border-box;
         .mine_name{
           h1{
             font-size: 3rem;
@@ -100,7 +103,9 @@ export default {
         padding-left: 3rem;
         text-align: center;
         display: inline-table;
-        margin-top: 1rem;
+        position: absolute;
+        height: 5rem;
+        bottom: 1rem;
         h3{
           color: #fff;
           font-size: 2rem;

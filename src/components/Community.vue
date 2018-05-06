@@ -8,6 +8,7 @@
 <script>
 import TaskBar from '../components/TaskBar'
 import TaskCell from '../components/TaskCell'
+import {getTaskList} from '../utils/api'
 export default {
     name: 'HelloWorld',
     data () {
@@ -17,6 +18,11 @@ export default {
     components: {
         TaskBar,
         TaskCell,
+    },
+    created() {
+        getTaskList().then((data)=>{
+            console.log(data)
+        })
     }
 }
 </script>
