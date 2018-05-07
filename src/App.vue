@@ -1,19 +1,29 @@
 <template>
   <div id="app">
-    <y-header :height="headerHeight" v-if="headerHeight" />
-    <router-view class="router_view" :class="{blur:this.$store.state.popup.show}"
-    :style="{height: contentHeight+'px', paddingTop: headerHeight+'px', paddingBottom: footerHeight+'px'}" 
+    <y-header :height="headerHeight" v-if="headerHeight" :class="{blur:showShadow}" />
+    <router-view class="router_view" 
     :height="contentHeight" 
+    :class="{blur:showShadow}"
+    :style="{height: contentHeight+'px', paddingTop: headerHeight+'px', paddingBottom: footerHeight+'px'}" 
     />
-    <y-footer :height="footerHeight" v-if="footerHeight"/>
-    <y-shadow v-if="this.$store.state.popup.show" :class="{blur:this.$store.state.popup.show}"/>
+    <y-footer :height="footerHeight" v-if="footerHeight" :class="{blur:showShadow}" />
+    <y-pop-up v-if="showShadow" >
+      <div class="content colCenterNoWarp">
+        <p>为了方便核查，请谨慎输入您的（平台）账号，一旦确认，不可更改。</p>
+        <input type="number" placeholder="请输入您的平台账号"/>
+        <div class="button" >
+          <button class="gray" @click="cancel">取消</button>
+          <button class="red" @click="confirm">确定</button>
+        </div>
+      </div>
+    </y-pop-up>
   </div>
 </template>
 
 <script>
 import YFooter from './components/YFooter'
 import YHeader from './components/YHeader'
-import YShadow from './components/YShadow'
+import YPopUp from './components/YPopUp'
 import mapState from 'vuex' 
 export default {
   name: 'App',
@@ -26,7 +36,15 @@ export default {
   components: {
     YHeader,
     YFooter,
-    YShadow
+    YPopUp
+  },
+  methods: {
+    cancel() {
+      this.$store.commit('changePop')
+    },
+    confirm() {
+
+    }
   },
   computed: {
     devHeight() {
@@ -41,6 +59,9 @@ export default {
     footerHeight() {
       return this.$route.meta.hasFooter ? this.rem2px(this.footerH) : 0
     },
+    showShadow() {
+      return this.$store.state.popup.show
+    }
   },
   created (){
   }
@@ -57,10 +78,77 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     .router_view{
       height: 100%;
-      &.blur{
-        filter: blur(4rem)
+    }
+  }
+  .blur{
+    filter: blur(4px)
+  }
+  .content{
+    p{
+      color: #666;
+      padding-left: 1rem;
+      font-size: 1.3rem;
+      position: relative;
+      font-weight: 500;
+      &::before{
+        content: '';
+        position: absolute;
+        width: .2rem;
+        height: .2rem;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        background: #ff1e5e;
+        left: 0;
+        top: 25%;
+        border: .2rem solid #ffd2df;
+      }
+    }
+    input{
+      width: 100%;
+      height: 3rem;
+      margin-top: 2rem;
+      border: 1px solid #999;
+      border-radius: 10rem;
+      text-indent: 1.5rem;
+    }
+    .button{
+      align-self: flex-end;
+      button{
+        width: 7rem;
+        height: 2.5rem;
+        margin-top: 2rem;
+        position: relative;
+        border-radius: 1.75rem;
+        color: #fff;
+        font-size: 1.3rem;
+        font-weight: 500;
+        &::before,&::after{
+          content: '';
+          position: absolute;
+          top: 50%;
+          width: .3rem;
+          height: .3rem;
+          border-radius: 50%;
+          transform: translateY(-50%);
+          background: #ddd;
+        }
+        &::before{
+          left: 1rem;
+        }
+        &::after{
+          right: 1rem;
+        }
+        &.gray{
+          margin-right: 1rem;
+          background: #d2d2d2;
+          box-shadow: 0 2px 5px #ccc;
+          
+        }
+        &.red{
+          background: linear-gradient(left, #ff9657, #fd545a);
+          box-shadow: 0 2px 5px #f9bb96;
+        }
       }
     }
   }
-
 </style>

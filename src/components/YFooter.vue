@@ -6,7 +6,7 @@
         </router-link>
         <div class="footerIcon colCenterNoWarp" @click="release">
             <img src="../assets/imgs/Icon_Appl.png" alt="">
-            <p>发布任务{{this.$store.state.popup.show}}</p>
+            <p>发布任务</p>
         </div>
         <router-link to="/mine" class="footerIcon colCenterNoWarp">
             <img src="../assets/imgs/Icon_Self.png" alt="">
