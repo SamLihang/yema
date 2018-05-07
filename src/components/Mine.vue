@@ -24,7 +24,7 @@
         <img src="../assets/imgs/Icon_cmar.png" class="icons" alt="" slot="icon">
         <h3 slot="text">我发布的任务</h3>
       </y-cell>
-      <y-cell class="cell">
+      <y-cell class="cell" link="/myaccount">
         <img src="../assets/imgs/Icon_love.png" class="icons" alt="" slot="icon">
         <h3 slot="text">我的账号</h3>
       </y-cell>

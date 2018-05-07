@@ -1,7 +1,7 @@
 <template>
-    <div class="main rowCenterNoWarp" :style="{height:height+'px'}">
+    <header class="y_header rowCenterNoWarp" :style="{height:height+'px'}">
         <h1>抖音</h1>
-    </div>
+    </header>
 </template>
 
 <script>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    .main{
+    .y_header{
         width: 100%;
         position: fixed;
         top: 0;
