@@ -1,5 +1,5 @@
 <template>
-  <div class="y_title colCenterNoWarpStart">
+  <div class="y_title colCenterNoWarpStart" :style="{height:height+'px'}">
     <img src="../assets/imgs/Icon_back.png" alt="" @click.stop="back">
     <div class="title rowBetweenNoWarp">
       <h1>{{this.$route.name}}</h1>
@@ -15,6 +15,11 @@ export default {
       return {
       }
     },
+    computed: {
+      height() {
+        return parseInt(this.rem2px(8))
+      }
+    },
     methods: {
       back() {
         this.$router.go(-1)
@@ -27,7 +32,6 @@ export default {
   .y_title{
     top: 0;
     width: 100%;
-    height: 8rem;
     z-index: 2;
     padding: 0 1rem;
     position: fixed;

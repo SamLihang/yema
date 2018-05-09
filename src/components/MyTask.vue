@@ -1,50 +1,63 @@
 <template>
   <div class="my_task">
     <y-title />
-    <div class="my_task_list" :style="{marginTop:'8rem'}">
-      <y-cell height="6rem" :link="{path:'/TaskDetaile', query: {id:task.id}}" class="y_cell" v-for="(task,index) in data" :key="index">
-        <img src="../assets/imgs/bc_task.jpg" alt="" slot="icon" class="task_icon">
-        <div class="task_content colBetweenNoWarp" slot="text">
-          <div class="content_top rowBetweenNoWarp">
-            <div class="creat_time rowStartNoWarp">
-              <img src="../assets/imgs/Icon_shop.png" alt="">
-              <p>创建时间：{{createTime(task.createTime)}}</p>
+    <y-scroll ref="yscroll" :height="scrollHeight" @pullingUp="pullingUp" @pullingDown="pullingDown" class="my_task_list" :style="{marginTop:titleHeight+'px'}">
+      <transition-group name="popbottom">      
+        <y-cell height="6rem" :link="{path:'/TaskDetaile', query: {id:task.id}}" class="y_cell" v-for="(task,index) in data" :key="index" v-if="task" :style="{transitionDelay:index/20+'s'}">
+          <img src="../assets/imgs/bc_task.jpg" alt="" slot="icon" class="task_icon">
+          <div class="task_content colBetweenNoWarp" slot="text">
+            <div class="content_top rowBetweenNoWarp">
+              <div class="creat_time rowStartNoWarp">
+                <img src="../assets/imgs/Icon_shop.png" alt="">
+                <p>创建时间：{{createTime(task.createTime)}}</p>
+              </div>
+              <div class="task_status">
+                <p>订单{{taskStatus(task.status)}}</p>
+              </div>
             </div>
-            <div class="task_status">
-              <p>订单{{taskStatus(task.status)}}</p>
+            <div class="content_bottom rowBetweenNoWarp">
+              <div class="task_count">
+                <p>数量：{{task.count}}</p>
+              </div>
+              <div class="fulfil_count">
+                <p>剩余数量：{{task.surplus}}</p>
+              </div>
             </div>
           </div>
-          <div class="content_bottom rowBetweenNoWarp">
-            <div class="task_count">
-              <p>数量：{{task.count}}</p>
-            </div>
-            <div class="fulfil_count">
-              <p>剩余数量：{{task.surplus}}</p>
-            </div>
-          </div>
-        </div>
-        <img src="../assets/imgs/Icon_arrow.png" alt="" class="point" slot="point">
-      </y-cell>
-    </div>
+          <img src="../assets/imgs/Icon_arrow.png" alt="" class="point" slot="point">
+        </y-cell>
+      </transition-group>
+    </y-scroll>
   </div>
 </template>
 
 <script>
-import YTitle from '@/components/YTitle'
 import YCell from '@/components/YCell'
+import YTitle from '@/components/YTitle'
+import YScroll from '@/components/YScroll'
 import { getMyTasks } from '@/utils/api'
 export default {
     name: 'MyTask',
     components: {
       YCell,
       YTitle,
+      YScroll,
     },
     data () {
       return {
-        data: [{"id":2,"createUser":1,"status":2,"createTime":1525453492000,"count":5,"remarks":"备注","surplus":4},{"id":3,"createUser":1,"status":2,"createTime":1525456794000,"count":5,"remarks":"备注","surplus":4},{"id":4,"createUser":1,"status":2,"createTime":1525456798000,"count":5,"remarks":"备注","surplus":4},{"id":5,"createUser":1,"status":2,"createTime":1525456799000,"count":5,"remarks":"备注","surplus":4},{"id":6,"createUser":1,"status":2,"createTime":1525456799000,"count":5,"remarks":"备注","surplus":4},{"id":7,"createUser":1,"status":2,"createTime":1525456799000,"count":5,"remarks":"备注","surplus":4},{"id":8,"createUser":1,"status":2,"createTime":1525456799000,"count":5,"remarks":"备注","surplus":4},{"id":9,"createUser":1,"status":2,"createTime":1525456800000,"count":5,"remarks":"备注","surplus":0},{"id":10,"createUser":1,"status":2,"createTime":1525456800000,"count":5,"remarks":"备注","surplus":5},{"id":11,"createUser":1,"status":2,"createTime":1525456800000,"count":5,"remarks":"备注","surplus":5},{"id":12,"createUser":1,"status":2,"createTime":1525456800000,"count":5,"remarks":"备注","surplus":5},{"id":13,"createUser":1,"status":2,"createTime":1525456800000,"count":5,"remarks":"备注","surplus":5},{"id":14,"createUser":1,"status":2,"createTime":1525456800000,"count":5,"remarks":"备注","surplus":5},{"id":15,"createUser":1,"status":2,"createTime":1525456801000,"count":5,"remarks":"备注","surplus":5},{"id":16,"createUser":1,"status":2,"createTime":1525456801000,"count":5,"remarks":"备注","surplus":5},{"id":17,"createUser":1,"status":2,"createTime":1525456801000,"count":5,"remarks":"备注","surplus":5},{"id":18,"createUser":1,"status":2,"createTime":1525456801000,"count":5,"remarks":"备注","surplus":5},{"id":19,"createUser":1,"status":2,"createTime":1525456801000,"count":5,"remarks":"备注","surplus":5},{"id":20,"createUser":1,"status":2,"createTime":1525456802000,"count":5,"remarks":"备注","surplus":5}]
+        data: null,
       }
     },
+    props: {
+      contentHeight: null,
+    },
     methods: {
+      pullingUp() {
+        this.$refs.yscroll.forceUpdate()
+      },
+      pullingDown() {
+        this.$refs.yscroll.forceUpdate()
+      },  
       createTime (timestamp) {
         let time = new Date(timestamp)
         let Y = time.getFullYear()
@@ -63,6 +76,14 @@ export default {
           default:
             break;
         }
+      },
+    },
+    computed: {
+      scrollHeight() {
+        return this.contentHeight - this.titleHeight
+      },
+      titleHeight() {
+        return parseInt(this.rem2px(8))
       }
     },
     mounted() {
@@ -76,9 +97,10 @@ export default {
 <style scoped lang="scss">
   .my_task{
     .my_task_list{
-      padding: 1rem;
+      padding: 0rem 1rem;
+      box-sizing: border-box;
       .y_cell{
-        margin-bottom: 1rem;
+        margin: 1rem 0;
       }
       .task_icon{
         width: 15%;

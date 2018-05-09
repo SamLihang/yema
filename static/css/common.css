@@ -9,6 +9,7 @@ body {
   width: 100%;
   height: 100%;
   overflow-x: auto;
+  overflow: hidden;
   color: #333;
   /* 禁止浏览器默认滚动  大部分浏览器暂不支持 */
   overscroll-behavior-y: none;  
@@ -400,7 +401,7 @@ button:active{
 .popbottom-enter,
 .popbottom-leave-to
 {
-  opacity: .5;
+  opacity: 0;
   transform: translate3d(0, 100%, 0);
 }
 .poptop-enter,

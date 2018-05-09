@@ -11,10 +11,12 @@ import VueLazyload from 'vue-lazyload'
 import '../node_modules/amfe-flexible/index.js'
 import '../static/css/common.css'
 import '../src/assets/scss/global.scss'
+import VueClipboard from 'vue-clipboard2' //copy
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
 Vue.use(Router)
+Vue.use(VueClipboard)
 Vue.use(VueLazyload, {
   // error: logoSrc,//这个是请求失败后显示的图片
   // loading: logoSrc, //这个是加载的loading过渡效果

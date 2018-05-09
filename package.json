@@ -58,6 +58,7 @@
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
+    "vue-clipboard2": "^0.1.0",
     "vue-lazy-render": "^1.0.20",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",

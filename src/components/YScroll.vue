@@ -165,16 +165,18 @@ const deviceHeight = document.body.offsetHeight;
         },
         forceUpdate(dirty) {
             if (this.pullDownRefresh && this.isPullingDown) {
-                this.isPullingDown = false
-                this._reboundPullDown().then(() => {
-                    this._afterPullDown()
-                })
+                setTimeout(() => {
+                    this.isPullingDown = false
+                    this._reboundPullDown().then(() => {
+                        this._afterPullDown()
+                    })
+                }, 1000);
             } else if (this.pullUpLoad && this.isPullUpLoad) {
                 this.isPullUpLoad = false
                 this.scroll.finishPullUp()
                 this.pullUpDirty = dirty
                 this.refresh()
-                } else {
+            } else {
                 this.refresh()
             }
         },

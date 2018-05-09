@@ -2,7 +2,9 @@
     <div class="main">
         <y-scroll ref="yscroll" :height="contentHeight" @pullingUp="pullingUp" @pullingDown="pullingDown" :style="{marginTop:headerHeight+'px'}">
             <task-bar />
-            <task-cell :data="task" v-for="(task,index) in taskList" :key="index"/>
+            <transition-group name="popbottom">
+                <task-cell :data="task" v-for="(task,index) in taskList" :key="index" v-if="task" :style="{transitionDelay:index/20+'s'}"/>
+            </transition-group>
         </y-scroll>
     </div>
 </template>

@@ -5,7 +5,11 @@
         <div class="task_msg rowCenterNoWarp">
             <h2>抖音号: {{data.id}}</h2>
         </div>
-        <button class="deepBlue">复制</button>
+        <button 
+         v-clipboard:copy="data.id"
+         v-clipboard:success="onCopy"
+         v-clipboard:error="onError"
+        class="deepBlue">复制</button>
         <div class="task_tim rowCenterNoWarp">
             <img src="../assets/imgs/Icon_Point.png" alt="">
             <p>{{createTime}}</p>
@@ -42,6 +46,14 @@ export default {
             default: () => {
                 return {}
             }
+        }
+    },
+    methods: {
+        onCopy: function (e) {
+            alert('复制成功')
+        },
+        onError: function (e) {
+            alert('复制失败')
         }
     },
     computed: {

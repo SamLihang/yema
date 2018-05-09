@@ -12,7 +12,7 @@
             <p>Charm of travel </p>
             <h3>您发布的完成情况：{{dataSource.fulfiled}}/{{dataSource.count}}</h3>
         </div>
-        <button class="red">查看明细</button>
+        <button class="red" @click="mytasks" >查看明细</button>
     </div>
   </div>
 </template>
@@ -23,6 +23,12 @@ export default {
     data () {
         return {
             dataSource: {count:18, fulfiled: 10}
+        }
+    },
+    methods: {
+        mytasks() {
+
+            this.$router.push({path: '/MyTask'})
         }
     },
     props: {
