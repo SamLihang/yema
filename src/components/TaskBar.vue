@@ -41,11 +41,11 @@ export default {
         width: 90%;
         height: 10rem;
         padding: 0 1rem;
-        margin-top: 1rem;
+        margin: 1rem 5%;
         box-sizing: border-box;
         background-color: #fafafa;
         border-bottom: 2px solid #fa6e4e;
-        box-shadow: 0 1px 20px #d1d1d1;
+        box-shadow: 0 1px 15px #d1d1d1;
         .task_header{
             width: 100%;
             height: 50%;
@@ -118,11 +118,14 @@ export default {
                 width: 5.5rem;
                 height: 2rem;
                 border-radius: 1rem;
-                background: linear-gradient(left, #ff9657, #fd545a);
                 color: #fff;
                 font-size: 1rem;
                 &.red{
-                    box-shadow: 0 4px 12px #f9bb96;
+                    background: linear-gradient(to left, #ff9657, #fd545a);
+                    box-shadow: 0 2px 6px #f9bb96;
+                    &:active{
+                        background: linear-gradient(to right, #ff9657, #fd545a);
+                    }
                 }
             }
         }

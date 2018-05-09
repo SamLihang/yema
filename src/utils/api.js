@@ -2,14 +2,14 @@ import "whatwg-fetch"
 
 const host = "/api"
 
-let Request = (url, body, method = 'get') => {
-  console.log(url, body)
+let Request = (url, body, add='', method = 'get') => {
+  console.log(url, body, add)
   if (!window.navigator.onLine){
       alert('当前网络不可用~')
   }
   return new Promise((resolve, reject) => {
       let isSuccess = true;
-      fetch(host + url, {
+      fetch(host + url + add, {
           method,
           body:body?JSON.stringify(body):body
       }).then((response) => {
@@ -18,7 +18,7 @@ let Request = (url, body, method = 'get') => {
       }).then((response) => {
           console.log('返回',response)            
           if (isSuccess) {
-              resolve(response.data);
+              resolve(response);
           } else {
               reject(response);
           }
@@ -29,7 +29,17 @@ let Request = (url, body, method = 'get') => {
 }
 
 const getTaskListUrl = '/tasks';
+const getMyTasksUrl = '/tasks/my';
 
-export let getTaskList = (body) => {
-  return  Request(getTaskListUrl,body);
+const getMyInfoUrl = '/my'
+export let getTaskList = (body, add) => {
+    return  Request(getTaskListUrl,body, add);
+}
+
+export let getMyTasks = (body) => {
+    return  Request(getMyTasksUrl,body);
+}
+
+export let getMyInfo = (body) => {
+    return  Request(getMyInfoUrl,body);
 }

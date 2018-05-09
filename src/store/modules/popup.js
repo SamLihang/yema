@@ -1,7 +1,7 @@
 // initial state
 
 const state = {
-    show: true
+    show: false
 }
 
 // mutations

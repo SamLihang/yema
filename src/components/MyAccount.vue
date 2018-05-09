@@ -1,7 +1,7 @@
 <template>
   <div class="my_account">
       <y-title />
-      <section class="account_content">
+      <section class="account_content" :style="{marginTop:'8rem'}">
         <h3>抖音账号</h3>
         <y-cell class="y_cell"> 
             <img src="../assets/imgs/temporary_touxiang.jpg" alt="" slot="icon">

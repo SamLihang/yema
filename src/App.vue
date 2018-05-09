@@ -1,22 +1,27 @@
 <template>
   <div id="app">
-    <y-header :height="headerHeight" v-if="headerHeight" :class="{blur:showShadow}" />
-    <router-view class="router_view" 
-    :height="contentHeight" 
+    <y-header :height="headerHeight" v-if="headerHeight" class="base" :class="{blur:showShadow}" />
+    <router-view class="router_view base" 
+    :contentHeight="contentHeight" 
+    :headerHeight="headerHeight"
     :class="{blur:showShadow}"
-    :style="{height: contentHeight+'px', paddingTop: headerHeight+'px', paddingBottom: footerHeight+'px'}" 
+    :style="{paddingTop: headerHeight+'px', paddingBottom: footerHeight+'px'}" 
     />
-    <y-footer :height="footerHeight" v-if="footerHeight" :class="{blur:showShadow}" />
-    <y-pop-up v-if="showShadow" >
-      <div class="content colCenterNoWarp">
-        <p>为了方便核查，请谨慎输入您的（平台）账号，一旦确认，不可更改。</p>
-        <input type="number" placeholder="请输入您的平台账号"/>
-        <div class="button" >
-          <button class="gray" @click="cancel">取消</button>
-          <button class="red" @click="confirm">确定</button>
+    <transition name="popbottom">
+      <y-footer :height="footerHeight" v-if="footerHeight" class="base" :class="{blur:showShadow}" />
+    </transition>
+    <transition name="popscale">
+      <y-pop-up v-if="showShadow" >
+        <div class="content colCenterNoWarp">
+          <p>为了方便核查，请谨慎输入您的（平台）账号，一旦确认，不可更改。</p>
+          <input type="number" placeholder="请输入您的平台账号"/>
+          <div class="button" >
+            <button class="gray" @click="cancel">取消</button>
+            <button class="red" @click="confirm">确定</button>
+          </div>
         </div>
-      </div>
-    </y-pop-up>
+      </y-pop-up>
+    </transition>
   </div>
 </template>
 
@@ -77,11 +82,26 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     .router_view{
-      height: 100%;
+      // height: 100%;
     }
   }
-  .blur{
-    filter: blur(4px)
+  .base{
+    transition: filter .3s ease-in-out;
+    &.blur{
+      filter: blur(4px);
+      transform: translate3d(0, 0, 0);
+      position: relative;
+      &::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ccc;
+        opacity: .3;
+      }
+    }
   }
   .content{
     p{
@@ -108,6 +128,7 @@ export default {
       height: 3rem;
       margin-top: 2rem;
       border: 1px solid #999;
+      font-size: 1.3rem;
       border-radius: 10rem;
       text-indent: 1.5rem;
     }
@@ -145,8 +166,11 @@ export default {
           
         }
         &.red{
-          background: linear-gradient(left, #ff9657, #fd545a);
+          background: linear-gradient(to left, #ff9657, #fd545a);
           box-shadow: 0 2px 5px #f9bb96;
+          &:active{
+            background: linear-gradient(to right, #ff9657, #fd545a);
+          }
         }
       }
     }

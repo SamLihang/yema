@@ -214,14 +214,13 @@ button{
     color: white;
     text-align: center;
     white-space: nowrap;
-    -webkit-transition: opacity .3s ease-in-out, transform .3s ease-in-out;
-    -moz-transition: opacity .3s ease-in-out, transform .3s ease-in-out;
-    transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+    -webkit-transition: opacity .3s ease-in-out, transform .3s ease-in-out, background .3s ease-in-out;
+    -moz-transition: opacity .3s ease-in-out, transform .3s ease-in-out, background .3s ease-in-out;
+    transition: opacity .3s ease-in-out, transform .3s ease-in-out, background .3s ease-in-out;
 }
 
 button:active{
   transform: scale(.95);
-  opacity: .5;
 }
 /* 箭头 */
 .arrows{
@@ -424,3 +423,15 @@ button:active{
   opacity: 0;
 }
 
+.popscale-enter-active{
+  transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity .3s ease-in-out;  
+}
+.popscale-leave-active {
+  transition: transform .1s ease-in-out, opacity .1s ease-in-out;
+}
+
+.popscale-enter,
+.popscale-leave-to {
+  transform: scale(.8);
+  opacity: .5;
+}

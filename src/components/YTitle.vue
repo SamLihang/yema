@@ -25,12 +25,14 @@ export default {
 
 <style scoped lang="scss">
   .y_title{
+    top: 0;
     width: 100%;
     height: 8rem;
+    z-index: 2;
     padding: 0 1rem;
-    position: relative;
+    position: fixed;
     box-sizing: border-box;
-    background: linear-gradient(left, #ff728b, #fe987e);
+    background: linear-gradient(to left, #ff728b, #fe987e);
     .title{
       width: 100%;
       margin-top: 1rem;

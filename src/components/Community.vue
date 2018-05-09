@@ -1,11 +1,14 @@
 <template>
-    <div class="main colStartNoWarp">
-        <task-bar />
-        <task-cell />
+    <div class="main">
+        <y-scroll ref="yscroll" :height="contentHeight" @pullingUp="pullingUp" @pullingDown="pullingDown" :style="{marginTop:headerHeight+'px'}">
+            <task-bar />
+            <task-cell :data="task" v-for="(task,index) in taskList" :key="index"/>
+        </y-scroll>
     </div>
 </template>
 
 <script>
+import YScroll from '../components/YScroll'
 import TaskBar from '../components/TaskBar'
 import TaskCell from '../components/TaskCell'
 import {getTaskList} from '../utils/api'
@@ -13,15 +16,29 @@ export default {
     name: 'HelloWorld',
     data () {
         return {
+            taskList: null,
         }
     },
     components: {
         TaskBar,
+        YScroll,
         TaskCell,
+    },
+    props: {
+        contentHeight: null,
+        headerHeight: null,
+    },
+    methods: {
+        pullingUp() {
+            this.$refs.yscroll.forceUpdate()
+        },
+        pullingDown() {
+            this.$refs.yscroll.forceUpdate()
+        },  
     },
     created() {
         getTaskList().then((data)=>{
-            console.log(data)
+            this.taskList = data
         })
     }
 }
@@ -30,7 +47,6 @@ export default {
 <style scoped lang="scss">
     .main{
         width: 100%;
-        height: 100%;
         .test{
             width: 100%;
         }

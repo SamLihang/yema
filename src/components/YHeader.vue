@@ -28,7 +28,8 @@ export default {
         top: 0;
         left: 0;
         overflow: hidden;
-        background: linear-gradient(left, #ff728b, #fe987e);
+        z-index: 9;
+        background: linear-gradient(to left, #ff728b, #fe987e);
         h1{
             color: #fff;
         }

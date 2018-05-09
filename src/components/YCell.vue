@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link :to="link">
-      <div class="y_cell rowBetweenNoWarp" :style="{height:height}" :class="{shadow:shadow}">
+      <div class="y_cell rowBetweenNoWarp" :style="{height:height}" :class="{shadow:shadow}" v-cell>
         <div class="cell_left rowStartNoWarp">
           <slot name="icon" />
           <slot name="text" />
@@ -25,7 +25,7 @@ export default {
     },
     props: {
       link: {
-        type: String,
+        type: null,
         default: ''
       },
       height: {

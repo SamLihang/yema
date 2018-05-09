@@ -13,7 +13,7 @@
     </div>
     <div class="task_content">
         <h3 class="task_remarks">备注: {{data.remarks}}</h3>
-        <p>当前剩余数量: {{data.count}}单</p>
+        <p>当前剩余数量: {{data.surplus}}单</p>
     </div>
     <div class="task_footer rowBetweenNoWarp">
         <div class="task_visit rowStartNoWarp">
@@ -34,11 +34,15 @@ export default {
     name: 'TaskCell',
     data () {
         return {
-            data: {"id":1,"createUser":1,"status":2,"createTime":1525452115000,"count":5,"remarks":"备注","visit":18,"hot": true}
         }
     },
     props: {
-
+        data: {
+            type: Object,
+            default: () => {
+                return {}
+            }
+        }
     },
     computed: {
         createTime () {
@@ -56,7 +60,7 @@ export default {
     .task_cell{
         width: 90%;
         padding: 1rem 1rem .5rem;
-        margin-top: 1rem;
+        margin:0 5% 1rem;
         box-sizing: border-box;
         border-radius: 4px;
         position: relative;
@@ -84,8 +88,11 @@ export default {
                 color: #fff;
                 font-size: $fts;
                 &.deepBlue{
-                    background: linear-gradient(right, #00ccff, #00a8ff);
-                    box-shadow: 0 4px 12px #7beeff;
+                    background: linear-gradient(to right, #00ccff, #00a8ff);
+                    box-shadow: 0 2px 6px #7beeff;
+                    &:active{
+                        background: linear-gradient(to left, #00ccff, #00a8ff);
+                    }
                 }
             }
             .task_tim{
@@ -134,12 +141,18 @@ export default {
                     color: #fff;
                     font-size: $fts;
                     &.red{
-                        background: linear-gradient(left, #ff9657, #fd545a);
-                        box-shadow: 0 4px 12px #f9bb96;
+                        background: linear-gradient(to left, #ff9657, #fd545a);
+                        box-shadow: 0 2px 6px #f9bb96;
+                        &:active{
+                            background: linear-gradient(to right, #ff9657, #fd545a);
+                        }
                     }
                     &.blue{
-                        background: linear-gradient(left, #61eaff, #36d2e9);
-                        box-shadow: 0 4px 12px #7beeff;
+                        background: linear-gradient(to left, #61eaff, #36d2e9);
+                        box-shadow: 0 2px 6px #7beeff;
+                        &:active{
+                            background: linear-gradient(to right, #61eaff, #36d2e9);
+                        }
                     }
                 }
             }

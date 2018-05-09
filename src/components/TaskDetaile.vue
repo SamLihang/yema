@@ -1,7 +1,7 @@
 <template>
   <div class="task_detaile">
     <y-title />
-    <div class="detaile_body">
+    <div class="detaile_body" :style="{marginTop:'8rem'}">
       <div class="detaile_content">
         <div class="detaile_header rowBetweenNoWarpStart">
           <div class="detaile_title">
@@ -39,6 +39,7 @@
 <script>
 import YCell from '../components/YCell'
 import YTitle from '../components/YTitle'
+import { getTaskList } from '../utils/api'
 export default {
     name: 'TaskDetaile',
     components: {
@@ -47,17 +48,22 @@ export default {
     },
     data () {
       return {
-        data: {createTime: 1525452115000, count: 10, fuileCount: 10}        
+        data: {createtime: 1525452115000, count: 10, fuileCount: 10}        
       }
     },
     computed: {
       createTime () {
-        let time = new Date(this.data.createTime)
+        let time = new Date(this.data.createtime)
         let Y = time.getFullYear()
         let M = time.getMonth() + 1
         let D = time.getDate()
         return `${Y}-${M < 10 ? '0' + M : M}-${D < 10 ? '0' + D : D}`
       }
+    },
+    mounted() {
+      getTaskList(null,`/${this.$route.query.id}`).then(data => {
+        this.task = data
+      })
     }
 }
 </script>
@@ -93,7 +99,10 @@ export default {
             border-radius: 1rem;
             color: #fff;
             font-size: 1rem;
-            background: linear-gradient(left, #ff9657, #fd545a)
+            background: linear-gradient(to left, #ff9657, #fd545a);
+            &:active{
+              background: linear-gradient(to right, #ff9657, #fd545a);
+            }
           }
         }
         .detaile_msg{
@@ -142,7 +151,6 @@ export default {
             background: #8895a0;
           }
           .y_cell{
-            padding: 0 1rem;
             margin-top: .5rem;
             overflow: hidden;
             border-radius: 4px;
@@ -160,6 +168,7 @@ export default {
             }
             img{
               width: 2.5rem;
+              margin-left: 1rem;
               border: 2px solid #fff;
               border-radius: 50%;
             }
@@ -173,6 +182,7 @@ export default {
             p{
               white-space: nowrap;
               margin-right: 120%;
+              padding-right: 1rem;
               color: #999;
               font-size: .9rem;
               position: relative;
