@@ -14,6 +14,7 @@
             <p>{{pullUpTxt}}</p>
           </div>
           <div class="after-trigger" v-else>
+              <img src="../assets/svg/spinner.svg" alt="">
             <!-- <spinner type="dots" :size="spinnerSize"/> -->
           </div>
         </div>
@@ -32,6 +33,8 @@
         </div>
         <div class="after-trigger" v-else>
           <div v-if="isPullingDown" class="loading">
+              <img src="../assets/svg/spinner.svg" alt="">
+              
             <!-- <spinner type="ripple" :size="spinnerSize"/> -->
           </div>
           <div v-else><p>{{refreshTxt}}</p></div>
@@ -62,7 +65,6 @@ const deviceHeight = document.body.offsetHeight;
             pullUpDirty: true,
             pullDownStyle: '',
             bubbleY: 0,
-            spinnerSize: '30px'
         }
     },
     components: {
@@ -376,6 +378,11 @@ const deviceHeight = document.body.offsetHeight;
     transition: all;
     .after-trigger{
       margin: 5px 0;
+      img{
+          width: 30px;
+          height: 30px;
+          margin-bottom: 5px;
+      }
     }
 }
 .pullup-wrapper{
@@ -384,5 +391,7 @@ const deviceHeight = document.body.offsetHeight;
     justify-content: center;
     align-items: center;
     padding: 8px 0;
+    .after-trigger{
+    }    
 }
 </style>

@@ -14,7 +14,7 @@
       <y-pop-up v-if="showShadow" >
         <div class="content colCenterNoWarp">
           <p>为了方便核查，请谨慎输入您的（平台）账号，一旦确认，不可更改。</p>
-          <input type="number" placeholder="请输入您的平台账号"/>
+          <input type="number" placeholder="请输入您的平台账号" ref="inp" v-autoFocus/>
           <div class="button" >
             <button class="gray" @click="cancel">取消</button>
             <button class="red" @click="confirm">确定</button>

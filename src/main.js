@@ -38,6 +38,12 @@ Vue.prototype.rem2px = function (rem) {
   return parseInt(px)
 }
 
+Vue.directive('autoFocus', {
+  inserted (el) {
+    el.focus()
+  }
+})
+
 Vue.directive('cell', {
   inserted (el) {
     el.addEventListener('touchstart', () => {
