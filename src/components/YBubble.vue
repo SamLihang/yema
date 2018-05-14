@@ -24,7 +24,7 @@
     },
     computed: {
       distance() {
-        return Math.max(0, Math.min(this.y * this.ratio / 2, this.maxDistance))
+        return Math.max(0, Math.min(this.y * this.ratio, this.maxDistance))
       },
       style() {
         return `width:${this.width / this.ratio}px;height:${this.height / this.ratio}px`
@@ -97,16 +97,17 @@
           y: headPointR.y + (this.distance) / 2
         }
         ctx.quadraticCurveTo(controlPointR.x, controlPointR.y, headPointR.x, headPointR.y)
-        ctx.fillStyle = 'rgb(170,170,170)'
+        var my_gradient=ctx.createLinearGradient(0,0,0,170);
+        my_gradient.addColorStop(0,"#ff728b");
+        my_gradient.addColorStop(1,"#fe987e");
+        ctx.fillStyle = my_gradient;
         ctx.fill()
-        ctx.strokeStyle = 'rgb(153,153,153)'
-        ctx.stroke()
         ctx.restore()
       },
       _drawArrow(ctx) {
         ctx.save()
         ctx.beginPath()
-        const rate = this.distance / this.maxDistance
+        const rate = (this.distance - this.initRadius) > 0 ? (this.distance / this.maxDistance) : (1 - this.distance / this.maxDistance)
         const arrowRadius = this.initArrowRadius - (this.initArrowRadius - this.minArrowRadius) * rate
         // 画内圆
         ctx.arc(this.headCenter.x, this.headCenter.y, arrowRadius - (this.arrowWidth - rate), -Math.PI / 2, 0, true)
@@ -117,8 +118,6 @@
         ctx.lineTo(this.headCenter.x, this.headCenter.y - arrowRadius + this.arrowWidth * 3 / 2 - rate)
         ctx.fillStyle = 'rgb(255,255,255)'
         ctx.fill()
-        ctx.strokeStyle = 'rgb(170,170,170)'
-        ctx.stroke()
         ctx.restore()
       }
     },

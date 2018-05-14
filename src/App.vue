@@ -14,7 +14,7 @@
       <y-pop-up v-if="showShadow" >
         <div class="content colCenterNoWarp">
           <p>为了方便核查，请谨慎输入您的（平台）账号，一旦确认，不可更改。</p>
-          <input type="number" placeholder="请输入您的平台账号" ref="inp" v-autoFocus/>
+          <input type="number" v-model="account" placeholder="请输入您的平台账号" ref="inp" v-autoFocus/>
           <div class="button" >
             <button class="gray" @click="cancel">取消</button>
             <button class="red" @click="confirm">确定</button>
@@ -30,12 +30,14 @@ import YFooter from './components/YFooter'
 import YHeader from './components/YHeader'
 import YPopUp from './components/YPopUp'
 import mapState from 'vuex' 
+import { postBindAccount } from './utils/api'
 export default {
   name: 'App',
   data() {
     return {
       headerH: 3.8,
       footerH: 4.5,
+      account: null,
     }
   },
   components: {
@@ -48,7 +50,9 @@ export default {
       this.$store.commit('changePop')
     },
     confirm() {
-
+      postBindAccount({platform: 'douyin', account: this.account}).then((data) => {
+        console.log(data)
+      })
     }
   },
   computed: {

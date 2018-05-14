@@ -14,8 +14,7 @@
             <p>{{pullUpTxt}}</p>
           </div>
           <div class="after-trigger" v-else>
-              <img src="../assets/svg/spinner.svg" alt="">
-            <!-- <spinner type="dots" :size="spinnerSize"/> -->
+              <img src="../assets/svg/load.svg" alt="">
           </div>
         </div>
       </slot>
@@ -34,8 +33,6 @@
         <div class="after-trigger" v-else>
           <div v-if="isPullingDown" class="loading">
               <img src="../assets/svg/spinner.svg" alt="">
-              
-            <!-- <spinner type="ripple" :size="spinnerSize"/> -->
           </div>
           <div v-else><p>{{refreshTxt}}</p></div>
         </div>
@@ -48,7 +45,6 @@
 <script>
 import BScroll from 'better-scroll';
 import Bubble from './YBubble';
-// import {Spinner} from 'vux';
 const DIRECTION_H = 'horizontal'
 const DIRECTION_V = 'vertical'
 const deviceHeight = document.body.offsetHeight;
@@ -348,12 +344,6 @@ const deviceHeight = document.body.offsetHeight;
         z-index: 1;         
         min-width: 100%;
         display: inline-block;          //横向滚动必须使宽度自适应
-
-
-        // transition-property: transform;
-        // transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
-        // transition-duration: 0ms;
-        // transform: translate(-100px, 0px) translateZ(0px) !important;
     }
     .list-content{
         position: relative;
@@ -377,12 +367,15 @@ const deviceHeight = document.body.offsetHeight;
     align-items: center;
     transition: all;
     .after-trigger{
-      margin: 5px 0;
-      img{
-          width: 30px;
-          height: 30px;
-          margin-bottom: 5px;
-      }
+        margin: 5px 0;
+        img{
+            width: 30px;
+            height: 30px;
+            margin-bottom: 5px;
+        }
+        p{
+            color: #666;
+        }
     }
 }
 .pullup-wrapper{
@@ -392,6 +385,12 @@ const deviceHeight = document.body.offsetHeight;
     align-items: center;
     padding: 8px 0;
     .after-trigger{
+        img{
+            width: 40px;
+        }
+        p{
+            color: #666;
+        }
     }    
 }
 </style>

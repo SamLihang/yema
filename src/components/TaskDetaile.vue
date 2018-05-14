@@ -38,7 +38,7 @@
 
 <script>
 import YCell from '../components/YCell'
-import YTitle from '../components/YTitle'
+import YTitle from './YTitle'
 import { getTaskList } from '../utils/api'
 export default {
     name: 'TaskDetaile',
