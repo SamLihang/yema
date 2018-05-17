@@ -86,7 +86,7 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     .router_view{
-      // height: 100%;
+      width: 100%;
     }
   }
   .base{

@@ -8,8 +8,12 @@
             <img src="../assets/imgs/Icon_Appl.png" alt="" :class="{clicked: router === 1}">
             <p>发布任务</p>
         </div>
-        <router-link to="/mine" class="footerIcon colCenterNoWarp">
-            <img src="../assets/imgs/Icon_Self.png" alt="" :class="{clicked: router === 2}">
+        <router-link to="/teaching" class="footerIcon colCenterNoWarp">
+            <img src="../assets/imgs/Icon_teach.png" alt="" :class="{clicked: router === 2}">
+            <p>视频</p>
+        </router-link>
+         <router-link to="/mine" class="footerIcon colCenterNoWarp">
+            <img src="../assets/imgs/Icon_Self.png" alt="" :class="{clicked: router === 3}">
             <p>我的</p>
         </router-link>
     </div>
@@ -40,8 +44,10 @@ export default {
                 return 1
             } else if (this.$route.path === '/'){
                 return 0
-            } else if (this.$route.path === '/mine'){
+            } else if (this.$route.path === '/teaching'){
                 return 2
+            } else if (this.$route.path === '/mine'){
+                return 3
             }
         }
     },
@@ -71,9 +77,9 @@ export default {
                 box-sizing: border-box;
                 border: .5px solid rgba(255, 179, 199, 0);
                 transition: all .3s ease-in-out;
+                border: .5px solid rgba(255, 179, 199, 1);
                 &.clicked{
                     background: #f87e5b;
-                    border: .5px solid rgba(255, 179, 199, 1);
                 }
             }
             p{
