@@ -3,7 +3,8 @@
     <y-title />
     <y-scroll ref="yscroll" :height="scrollHeight" @pullingUp="pullingUp" @pullingDown="pullingDown" class="my_task_list" :style="{marginTop:titleHeight+'px'}">
       <transition-group name="popbottom">      
-        <y-cell height="6rem" :link="{path:'/TaskDetaile', query: {id:task.id}}" class="y_cell" v-for="(task,index) in data" :key="index" v-if="task" :style="{transitionDelay:index/20+'s'}">
+        <y-cell height="6rem" :link="{path:'/TaskDetaile', query: task}"
+         class="y_cell" v-for="(task,index) in data" :key="index" v-if="task" :style="{transitionDelay:index/20+'s'}">
           <img src="../assets/imgs/bc_task.jpg" alt="" slot="icon" class="task_icon">
           <div class="task_content colBetweenNoWarp" slot="text">
             <div class="content_top rowBetweenNoWarp">

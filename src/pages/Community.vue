@@ -1,6 +1,6 @@
 <template>
-    <div class="main">
-        <y-scroll ref="yscroll" :height="contentHeight" @pullingUp="pullingUp" @pullingDown="pullingDown" :style="{marginTop:headerHeight+'px'}">
+    <div class="main" :style="{height:contentHeight+'px'}">
+        <y-scroll ref="yscroll" :height="contentHeight" @pullingUp="pullingUp" @pullingDown="pullingDown">
             <task-bar />
             <transition-group name="popbottom">
                 <task-cell :data="task" v-for="(task,index) in taskList" :key="index" v-if="task" :style="{transitionDelay:index/20+'s'}"/>
@@ -10,12 +10,13 @@
 </template>
 
 <script>
-import YScroll from '../components/YScroll'
+// import YScroll from '../components/YScroll'
+import YScroll from '@com/YScroll2'
 import TaskBar from '../components/TaskBar'
 import TaskCell from '../components/TaskCell'
-import {getTaskList} from '../utils/api'
+import { getMyInfo,getTaskList } from '../utils/api'
 export default {
-    name: 'HelloWorld',
+    name: 'index',
     data () {
         return {
             taskList: null,
@@ -38,10 +39,16 @@ export default {
             this.$refs.yscroll.forceUpdate()
         },  
     },
-    created() {
-        getTaskList().then((data)=>{
+    mounted() {
+        getMyInfo().then((data) => {
+
+        })
+        getTaskList().then((data) => {
             this.taskList = data
         })
+    },
+    created() {
+        
     }
 }
 </script>
@@ -49,6 +56,9 @@ export default {
 <style scoped lang="scss">
     .main{
         width: 100%;
+        overflow: scroll;
+        margin-top: -1px;
+        -webkit-overflow-scrolling: touch;
         .test{
             width: 100%;
         }

@@ -10,13 +10,20 @@
           <y-star class="mine_star" :count="5" :curCount="4"/>
         </div>
         <div class="mine_img rowCenterNoWarp">
-          <img src="../assets/imgs/temporary_touxiang.jpg" alt="">
+          <img src="@img/Icon_vip.png" class="vip" alt="" v-if="true">
+          <img src="@img/temporary_touxiang.jpg" class="headPhoto" alt="">
         </div>
       </div>
-      <div class="mine_left">
-        <h3>{{data.count}}</h3>
-        <h5>剩余数量</h5>
-        <p>ENEROY</p>
+      <div class="mine_footer rowBetweenNoWarp">
+        <div class="mine_left">
+          <h3>{{data.count}}</h3>
+          <h5>剩余数量</h5>
+          <p>ENEROY</p>
+        </div>
+        <router-link to="" class="mine_right colCenterNoWarp">
+          <img src="@img/bc_update.png" alt="">
+          <h4>普通会员</h4>
+        </router-link>
       </div>
     </div>
     <div class="mine_content">
@@ -33,8 +40,8 @@
 </template>
 
 <script>
-import YStar from './YStar'
-import YCell from './YCell'
+import YStar from '@com/YStar'
+import YCell from '@com/YCell'
 export default {
     name: 'Mine',
     components: {
@@ -91,33 +98,55 @@ export default {
           height: 8.5rem;
           background: url(../assets/imgs/bc_user.png) 100% 100% no-repeat;
           background-size: 100% 100%;
-          img{
+          position: relative;
+          img.headPhoto{
             width: 6.8rem;
             height: 6.8rem;
             border-radius: 50%;
             border: 3px solid #fff;
           }
+          img.vip{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 3rem;
+            transform: translate(25%, -25%);
+          }
         }
       }
-      .mine_left{
-        padding-left: 3rem;
-        text-align: center;
-        display: inline-table;
+      .mine_footer{
         position: absolute;
-        height: 5rem;
+        width: 100%;
         bottom: 1rem;
-        h3{
-          color: #fff;
-          font-size: 2rem;
+        height: 5rem;
+        .mine_left{
+          padding-left: 3rem;
+          text-align: center;
+          display: inline-table;
+          h3{
+            color: #fff;
+            font-size: 2rem;
+          }
+          h5{
+            color: #fff;
+            font-weight: 500;
+          }
+          p{
+            font-size: .8rem;
+            color: #fff;
+            opacity: .5;
+          }
         }
-        h5{
-          color: #fff;
-          font-weight: 500;
-        }
-        p{
-          font-size: .8rem;
-          color: #fff;
-          opacity: .5;
+        .mine_right{
+          padding-right: 2rem;
+          img{
+            width: 6rem;
+            margin-left: 2.4rem;
+          }
+          h4{
+            font-weight: 500;
+            color: #fff;
+          }
         }
       }
     }

@@ -12,23 +12,18 @@
         </div>
         <div class="detaile_msg">
           <div class="content_top">
-            <h3>创建时间：{{createTime}}</h3>
+            <h3>创建时间：{{createTime(query.createTime)}}</h3>
           </div>
           <div class="content_bottom rowBetweenNoWarp">
-              <p>数量：{{data.count}}</p>
-              <p>完成数量：{{data.fuileCount}}</p>
+              <p>数量：{{query.count}}</p>
+              <p>完成数量：{{query.count - query.surplus}}</p>
           </div>
         </div>
         <div class="detaile_list">
-          <y-cell class="y_cell" :shadow="false">
+          <y-cell class="y_cell" :shadow="false" v-for="(data,index) in dataSource" :key="index">
             <img src="../assets/imgs/temporary_touxiang.jpg" alt="" slot="icon">
-            <h4 slot="text">账号{{'01'}}：<span>{{'BEAUT.GR'}}</span></h4>
-            <p slot="point">{{createTime}}</p>
-          </y-cell>
-          <y-cell class="y_cell" :shadow="false">
-            <img src="../assets/imgs/temporary_touxiang.jpg" alt="" slot="icon">
-            <h4 slot="text">账号{{'01'}}：<span>{{'BEAUT.GR'}}</span></h4>
-            <p slot="point">{{createTime}}</p>
+            <h4 slot="text">账号{{accountIndex(index)}}：<span>{{'BEAUT.GR'}}</span></h4>
+            <p slot="point">{{createTime(data.createtime)}}</p>
           </y-cell>
         </div>
       </div>
@@ -37,8 +32,8 @@
 </template>
 
 <script>
-import YCell from '../components/YCell'
-import YTitle from './YTitle'
+import YCell from '@com/YCell'
+import YTitle from '@com/YTitle'
 import { getTaskList } from '../utils/api'
 export default {
     name: 'TaskDetaile',
@@ -48,21 +43,29 @@ export default {
     },
     data () {
       return {
-        data: {createtime: 1525452115000, count: 10, fuileCount: 10}        
+        query: this.$route.query,
+        dataSource: [],        
       }
     },
     computed: {
-      createTime () {
-        let time = new Date(this.data.createtime)
+    },
+    methods: {
+      createTime (timeStamp) {
+        let timestamp = timeStamp ? timeStamp : new Date().getTime()
+        let time = new Date(timestamp * 1)
         let Y = time.getFullYear()
         let M = time.getMonth() + 1
         let D = time.getDate()
         return `${Y}-${M < 10 ? '0' + M : M}-${D < 10 ? '0' + D : D}`
+      },
+      accountIndex (index) {
+        let idx = index ? parseInt(index) + 1 : 1
+        return idx < 10 ? `0${idx}` : idx
       }
     },
     mounted() {
       getTaskList(null,`/${this.$route.query.id}`).then(data => {
-        this.task = data
+        this.dataSource = data
       })
     }
 }

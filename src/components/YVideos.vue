@@ -6,7 +6,7 @@
       <div class="videoMsg rowBetweenNoWarp">
         <h3>{{video.name}}</h3>
         <div class="right rowBetweenNoWarp">
-          <div class="leaveWord colCenterNoWarp">
+          <div class="leaveWord colCenterNoWarp" @click="changeComment(index)">
             <img src="@img/Icon_leave_word.png" alt="">
             <p>{{video.count}}</p>
           </div>
@@ -18,11 +18,11 @@
         </div>
       </div>
     </div>
-    <div class="video colCenterNoWarp" v-for="(video,index) in datasource" :key="index">
+    <router-link to="/payment" class="video colCenterNoWarp">
       <div class="moreVideo colCenterNoWarp">
         <img src="@img/bc_moreVideo.jpg" alt="">
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -39,6 +39,11 @@ export default {
         default: () => {
           return []
         }
+      }
+    },
+    methods: {
+      changeComment(index) {
+        this.$emit('changeComment',index)
       }
     }
 }
@@ -66,6 +71,7 @@ export default {
       .videoMsg{
         width: 100%;
         height: 3.5rem;
+        padding-bottom: .5rem;
         h3{
           color: #999;
           font-weight: 500;

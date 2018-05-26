@@ -4,8 +4,9 @@
     <router-view class="router_view base" 
     :contentHeight="contentHeight" 
     :headerHeight="headerHeight"
+    :devHeight="devHeight"
     :class="{blur:showShadow}"
-    :style="{paddingTop: headerHeight+'px', paddingBottom: footerHeight+'px'}" 
+    :style="{paddingTop: headerHeight+'px', height: contentHeight+'px'}" 
     />
     <transition name="popbottom">
       <y-footer :height="footerHeight" v-if="footerHeight" class="base" :class="{blur:showShadow}" />
@@ -77,7 +78,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   #app {
     width: 100%;
     height: 100%;
@@ -94,7 +95,6 @@ export default {
     &.blur{
       filter: blur(4px);
       transform: translate3d(0, 0, 0);
-      position: relative;
       &::before{
         content: '';
         position: absolute;

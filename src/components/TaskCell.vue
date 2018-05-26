@@ -26,14 +26,15 @@
             <p>+{{data.visit}} people visit</p>
         </div>
         <div class="task_button">
-            <button class="red">领取任务</button>
-            <button class="blue">确认完成</button>
+            <button class="red" @click="getTask(data.id)">领取任务</button>
+            <button class="blue" @click="completeTask(data.id)">确认完成</button>
         </div>
     </div>
   </div>
 </template>
 
 <script>
+import { getTaskList } from '@util/api'
 export default {
     name: 'TaskCell',
     data () {
@@ -54,6 +55,16 @@ export default {
         },
         onError: function (e) {
             alert('复制失败')
+        },
+        getTask(id) {
+            getTaskList(null, '/'+id, 'post').then(data => {
+
+            })
+        },
+        completeTask(id) {
+            getTaskList(null, '/'+id, 'put').then(data => {
+                
+            })
         }
     },
     computed: {
