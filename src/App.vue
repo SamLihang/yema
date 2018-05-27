@@ -6,7 +6,7 @@
     :headerHeight="headerHeight"
     :devHeight="devHeight"
     :class="{blur:showShadow}"
-    :style="{paddingTop: headerHeight+'px', height: contentHeight+'px'}" 
+    :style="{marginTop: headerHeight+'px', height: contentHeight+'px'}" 
     />
     <transition name="popbottom">
       <y-footer :height="footerHeight" v-if="footerHeight" class="base" :class="{blur:showShadow}" />

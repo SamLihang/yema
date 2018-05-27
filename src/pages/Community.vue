@@ -11,7 +11,7 @@
 
 <script>
 // import YScroll from '../components/YScroll'
-import YScroll from '@com/YScroll2'
+import YScroll from '@com/YScroll'
 import TaskBar from '../components/TaskBar'
 import TaskCell from '../components/TaskCell'
 import { getMyInfo,getTaskList } from '../utils/api'
