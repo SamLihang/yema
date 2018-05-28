@@ -51,7 +51,7 @@ export default {
       this.$store.commit('changePop')
     },
     confirm() {
-      postBindAccount({platform: 'douyin', account: this.account}).then((data) => {
+      postBindAccount({platform: "douyin", account: this.account}).then((data) => {
         console.log(data)
       })
     }

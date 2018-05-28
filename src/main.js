@@ -12,7 +12,6 @@ import '../node_modules/amfe-flexible/index.js'
 import '../static/css/common.css'
 import '../src/assets/scss/global.scss'
 import VueClipboard from 'vue-clipboard2' //copy
-
 Vue.config.productionTip = false
 Vue.use(Vuex)
 Vue.use(Router)

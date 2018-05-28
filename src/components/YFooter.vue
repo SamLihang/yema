@@ -8,10 +8,10 @@
             <img src="../assets/imgs/Icon_Appl.png" alt="" :class="{clicked: router === 1}">
             <p>发布任务</p>
         </div>
-        <router-link to="/teaching" class="footerIcon colCenterNoWarp">
+        <!-- <router-link to="/teaching" class="footerIcon colCenterNoWarp">
             <img src="../assets/imgs/Icon_teach.png" alt="" :class="{clicked: router === 2}">
             <p>视频</p>
-        </router-link>
+        </router-link> -->
          <router-link to="/mine" class="footerIcon colCenterNoWarp">
             <img src="../assets/imgs/Icon_Self.png" alt="" :class="{clicked: router === 3}">
             <p>我的</p>

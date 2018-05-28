@@ -1,5 +1,5 @@
 import "whatwg-fetch"
-
+import store from '../store'
 const host = "/api"
 
 let Request = (url, body, add='', method = 'get') => {
@@ -18,7 +18,11 @@ let Request = (url, body, add='', method = 'get') => {
         // }
         fetch(path, {
             method,
-            body: (body && (method === 'post')) ? JSON.stringify(body) : body
+            body: (body && (method === 'post')) ? JSON.stringify(body) : body,
+            headers: {
+                'content-type': 'application/json;charset=UTF-8',
+                openid: store.state.openid
+            }
         }).then((response) => {
             isSuccess = response.ok;
             return response.json();
@@ -45,6 +49,10 @@ const getMyInfoUrl = '/my'
 
 export let getTaskList = (body, add, method = 'get') => {
     return  Request(getTaskListUrl,body, add, method);
+}
+
+export let postTask = (body) => {
+   return Request(getTaskListUrl, body, '', 'post') 
 }
 
 export let getMyTasks = (body) => {

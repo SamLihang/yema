@@ -19,7 +19,9 @@ export default {
     name: 'index',
     data () {
         return {
-            taskList: null,
+            taskList: [],
+            page: 1,
+            pageSize: 10,
         }
     },
     components: {
@@ -33,22 +35,34 @@ export default {
     },
     methods: {
         pullingUp() {
-            this.$refs.yscroll.forceUpdate()
+            this.page++;
+            this.getList();
         },
         pullingDown() {
-            this.$refs.yscroll.forceUpdate()
-        },  
+            this.page = 1;
+            this.taskList = [];
+            this.getList();
+        },
+        getList() {
+            getTaskList({PageNo:this.page,pageSize:this.pageSize}).then((data) => {
+                this.taskList = [...this.taskList,...data.data.array]
+                this.$refs.yscroll.forceUpdate()
+            })
+        }  
     },
     mounted() {
         getMyInfo().then((data) => {
-
+            let {douyinAccount, weishiAccount, headimgurl, nickname} = data.data
+            this.$store.commit('setHeadImg', headimgurl);
+            this.$store.commit('setNickName', nickname);
+            this.$store.commit('setWeiAccount', weishiAccount);
+            this.$store.commit('setDouAccount', douyinAccount);
         })
-        getTaskList().then((data) => {
-            this.taskList = data
-        })
+        this.getList();
     },
     created() {
-        
+        let {openid} = this.$route.query;
+        this.$store.commit('setOpenId', openid);
     }
 }
 </script>

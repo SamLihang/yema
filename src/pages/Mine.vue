@@ -6,12 +6,12 @@
       <div class="mine_msg rowBetweenNoWarp">
         <div class="mine_name">
           <h1>Hello!</h1>
-          <h1>{{data.name}}</h1>
+          <h1>{{this.$store.state.user.nickName}}</h1>
           <y-star class="mine_star" :count="5" :curCount="4"/>
         </div>
         <div class="mine_img rowCenterNoWarp">
           <img src="@img/Icon_vip.png" class="vip" alt="" v-if="true">
-          <img src="@img/temporary_touxiang.jpg" class="headPhoto" alt="">
+          <img :src="this.$store.state.user.headImgUrl" class="headPhoto" alt="">
         </div>
       </div>
       <div class="mine_footer rowBetweenNoWarp">
@@ -20,7 +20,7 @@
           <h5>剩余数量</h5>
           <p>ENEROY</p>
         </div>
-        <router-link to="" class="mine_right colCenterNoWarp">
+        <router-link to="" class="mine_right colCenterNoWarp" v-if="false">
           <img src="@img/bc_update.png" alt="">
           <h4>普通会员</h4>
         </router-link>

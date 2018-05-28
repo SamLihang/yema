@@ -89,7 +89,7 @@ export default {
     },
     mounted() {
       getMyTasks().then(data => {
-        this.data = data
+        this.data = data.data.array
       })
     }
 }

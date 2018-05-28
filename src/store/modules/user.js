@@ -1,10 +1,26 @@
 // initial state
 
 const state = {
+    nickName: '',
+    headImgUrl: '',
+    weishiAccount: '',
+    douyinAccount: '',
 }
 
 // mutations
 const mutations = {
+    setNickName (state, payload) {
+        payload && (state.nickName = payload)
+    },
+    setHeadImg (state, payload) {
+        payload && (state.headImgUrl = payload)
+    },
+    setWeiAccount (state, payload) {
+        payload && (state.weishiAccount = payload)
+    },
+    setDouAccount (state, payload) {
+        payload && (state.douyinAccount = payload)
+    }
 }
 
 // getters

@@ -5,12 +5,12 @@
         <h3>抖音账号</h3>
         <y-cell class="y_cell"> 
             <img src="../assets/imgs/temporary_touxiang.jpg" alt="" slot="icon">
-            <p slot="text">{{data.account}}</p>
+            <p slot="text">{{douyinAccount}}</p>
         </y-cell>
         <h3>微视账号</h3>
         <y-cell class="y_cell"> 
             <img src="../assets/imgs/temporary_touxiang.jpg" alt="" slot="icon">
-            <p slot="text">{{data.account}}</p>
+            <p slot="text">{{weishiAccount}}</p>
         </y-cell>
       </section>
   </div>
@@ -19,6 +19,7 @@
 <script>
 import YCell from '@/components/YCell'
 import YTitle from '@/components/YTitle'
+import { mapState } from 'vuex'
 export default {
     name: 'MyAccount',
     components: {
@@ -29,6 +30,15 @@ export default {
       return {
           data: {account: 1234567489456}
       }
+    },
+    computed: {
+        ...mapState({
+            douyinAccount: store => {return store.user.douyinAccount},
+            weishiAccount: store => {return store.user.weishiAccount}
+        })
+    },
+    created() {
+        console.log(this.$store)
     }
 }
 </script>
@@ -48,6 +58,7 @@ export default {
             }
         }
         .y_cell{
+            pointer-events: none;
             img{
                 margin-left: 1rem;
             }
