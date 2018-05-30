@@ -2,14 +2,14 @@
   <div class="my_account">
       <y-title />
       <section class="account_content" :style="{marginTop:'8rem'}">
-        <h3>抖音账号</h3>
-        <y-cell class="y_cell"> 
-            <img src="../assets/imgs/temporary_touxiang.jpg" alt="" slot="icon">
+        <h3 v-if="douyinAccount">抖音账号</h3>
+        <y-cell class="y_cell" v-if="douyinAccount"> 
+            <img :src="headImgUrl" alt="" slot="icon">
             <p slot="text">{{douyinAccount}}</p>
         </y-cell>
-        <h3>微视账号</h3>
-        <y-cell class="y_cell"> 
-            <img src="../assets/imgs/temporary_touxiang.jpg" alt="" slot="icon">
+        <h3 v-if="weishiAccount">微视账号</h3>
+        <y-cell class="y_cell" v-if="weishiAccount"> 
+            <img :src="headImgUrl" alt="" slot="icon">
             <p slot="text">{{weishiAccount}}</p>
         </y-cell>
       </section>
@@ -34,7 +34,8 @@ export default {
     computed: {
         ...mapState({
             douyinAccount: store => {return store.user.douyinAccount},
-            weishiAccount: store => {return store.user.weishiAccount}
+            weishiAccount: store => {return store.user.weishiAccount},
+            headImgUrl: store => {return store.user.headImgUrl}
         })
     },
     created() {
@@ -60,7 +61,10 @@ export default {
         .y_cell{
             pointer-events: none;
             img{
+                width: 3.5rem;
+                height: 3.5rem;
                 margin-left: 1rem;
+                border-radius: 50%;
             }
             p{
                 color: #666;

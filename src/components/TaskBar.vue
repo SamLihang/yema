@@ -3,14 +3,14 @@
     <div class="task_header rowStartNoWarp">
         <img src="../assets/imgs/Icon_Msg.png" alt="">
         <div class="task_count">
-            <h3>任务总量{{dataSource.count}}</h3>
+            <h3>任务总量{{publishTaskCount}}</h3>
             <p>Total amount of task</p>
         </div>
     </div>
     <div class="task_footer rowBetweenNoWarp">
         <div class="task_fulfaled">
             <p>Charm of travel </p>
-            <h3>您发布的完成情况：{{dataSource.fulfiled}}/{{dataSource.count}}</h3>
+            <h3>您发布的完成情况：{{finishTaskCount}}/{{publishTaskCount}}</h3>
         </div>
         <button class="red" @click="mytasks" >查看明细</button>
     </div>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { mapState, Store } from 'vuex'
+
 export default {
     name: 'TaskBar',
     data () {
@@ -38,6 +40,12 @@ export default {
                 return {}
             }
         }
+    },
+    computed: {
+        ...mapState({
+            finishTaskCount: store => {return store.user.finishTaskCount},
+            publishTaskCount: store => {return store.user.publishTaskCount},
+        })
     }
 }
 </script>

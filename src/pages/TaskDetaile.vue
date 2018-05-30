@@ -8,7 +8,7 @@
             <h1>任务情况</h1>
             <p>MISSION STATUS</p>
           </div>
-          <button>{{'进行中'}}</button>
+          <button>{{taskStatus}}</button>
         </div>
         <div class="detaile_msg">
           <div class="content_top">
@@ -18,7 +18,7 @@
               <p>数量：{{query.count}}</p>
               <p>完成数量：{{query.count - query.surplus}}</p>
           </div>
-        </div>
+        </div> 
         <div class="detaile_list">
           <y-cell class="y_cell" :shadow="false" v-for="(data,index) in dataSource" :key="index">
             <img src="../assets/imgs/temporary_touxiang.jpg" alt="" slot="icon">
@@ -48,6 +48,21 @@ export default {
       }
     },
     computed: {
+      taskStatus () {
+        switch (this.$route.query.status) {
+          case 1:
+            return '已完成'
+            break;
+          case 0:
+            return '进行中'
+            break;
+          case 2:
+            return '进行中'
+            break;
+          default:
+            break;
+        }
+      },
     },
     methods: {
       createTime (timeStamp) {

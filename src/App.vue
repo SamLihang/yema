@@ -6,7 +6,7 @@
     :headerHeight="headerHeight"
     :devHeight="devHeight"
     :class="{blur:showShadow}"
-    :style="{marginTop: headerHeight+'px', height: contentHeight+'px'}" 
+    :style="{top: headerHeight+'px', height: contentHeight+'px'}" 
     />
     <transition name="popbottom">
       <y-footer :height="footerHeight" v-if="footerHeight" class="base" :class="{blur:showShadow}" />
@@ -26,7 +26,7 @@
     <transition name="popscale">
       <y-pop-up v-if="showShadow && douyinAccount">
         <div class="release colCenterNoWarpStart">
-          <p>抖音号：{{douyinAccount}}</p>
+          <p>{{getPlatform}}号：{{douyinAccount}}</p>
           <div class="count rowCenterNoWarp">
             <p>互粉互赞数量：</p>
             <div class="subBtn" @click="subClick" />
@@ -81,7 +81,6 @@ export default {
     },
     confirm() {
       postBindAccount({platform: getPlatUserName, account: this.account}).then((data) => {
-        console.log(data)
       })
     },
     releaseConfirm(){
@@ -99,7 +98,7 @@ export default {
         weishiAccount: store => {return store.user.weishiAccount}
     }),
     ...mapGetters([
-      'getPlatUserName'
+      'getPlatUserName','getPlatform'
     ]),
     devHeight() {
       return document.documentElement.clientHeight || document.body.clientHeight;
@@ -132,6 +131,7 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     .router_view{
       width: 100%;
+      position: relative;
     }
   }
   .base{

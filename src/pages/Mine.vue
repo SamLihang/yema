@@ -10,14 +10,14 @@
           <y-star class="mine_star" :count="5" :curCount="4"/>
         </div>
         <div class="mine_img rowCenterNoWarp">
-          <img src="@img/Icon_vip.png" class="vip" alt="" v-if="true">
+          <img src="@img/Icon_vip.png" class="vip" alt="" v-if="false">
           <img :src="this.$store.state.user.headImgUrl" class="headPhoto" alt="">
         </div>
       </div>
       <div class="mine_footer rowBetweenNoWarp">
         <div class="mine_left">
-          <h3>{{data.count}}</h3>
-          <h5>剩余数量</h5>
+          <h3>{{energy}}</h3>
+          <h5>剩余能量</h5>
           <p>ENEROY</p>
         </div>
         <router-link to="" class="mine_right colCenterNoWarp" v-if="false">
@@ -42,6 +42,8 @@
 <script>
 import YStar from '@com/YStar'
 import YCell from '@com/YCell'
+import { mapState } from 'vuex'
+
 export default {
     name: 'Mine',
     components: {
@@ -52,6 +54,11 @@ export default {
       return {
         data: {name: 'Aaronle', count: 15}
       }
+    },
+    computed: {
+      ...mapState({
+        energy: store => {return store.user.energy}
+      })
     }
 }
 </script>
@@ -85,8 +92,9 @@ export default {
         box-sizing: border-box;
         .mine_name{
           h1{
-            font-size: 3rem;
+            font-size: 2.5rem !important;
             height: 3rem;
+            font-weight: 500;
             color: #fff;
           }
           .mine_star{

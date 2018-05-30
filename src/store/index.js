@@ -7,8 +7,8 @@ Vue.use(Vuex)
 const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
-    openid: '',
-    platforms: [{name:'抖音', userName:'douyin', select:true},{name:'微视', userName:'weishi', select: false}]
+    openid: localStorage.openid,
+    platforms: [{name:'抖音', userName:'douyin', select:true, num: 1},{name:'微视', userName:'weishi', select: false, num: 2}]
 }
 
 const actions = {
@@ -31,6 +31,13 @@ const getters = {
             }
         }
         return state.platforms[0].userName
+    },
+    getPlatNum: (state) => {
+        for(let i of state.platforms) {
+            if(i.select) {
+                return i.num
+            }
+        }
     }
 }
 

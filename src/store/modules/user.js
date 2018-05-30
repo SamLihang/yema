@@ -1,26 +1,39 @@
 // initial state
 
 const state = {
-    nickName: '',
-    headImgUrl: '',
-    weishiAccount: '',
-    douyinAccount: '',
+    energy: localStorage.energy ? localStorage.energy : 0,
+    nickName: localStorage.nickName,
+    headImgUrl: localStorage.headImgUrl,
+    weishiAccount: localStorage.weishiAccount,
+    douyinAccount: localStorage.douyinAccount,
+    finishTaskCount: localStorage.finishTaskCount ? localStorage.finishTaskCount : 0,
+    publishTaskCount: localStorage.publishTaskCount ? localStorage.publishTaskCount : 0,
 }
 
 // mutations
 const mutations = {
     setNickName (state, payload) {
-        payload && (state.nickName = payload)
+        payload && (localStorage.nickName = state.energy = payload)
     },
     setHeadImg (state, payload) {
-        payload && (state.headImgUrl = payload)
+        payload && (localStorage.headImgUrl = state.headImgUrl = payload)
     },
     setWeiAccount (state, payload) {
-        payload && (state.weishiAccount = payload)
+        payload && (localStorage.weishiAccount = state.weishiAccount = payload)
     },
     setDouAccount (state, payload) {
-        payload && (state.douyinAccount = payload)
+        payload && (localStorage.douyinAccount = state.douyinAccount = payload)
+    },
+    setFinishTaskCount (state, payload) {
+        localStorage.finishTaskCount = state.finishTaskCount = payload ? payload : 0
+    },
+    setPublishTaskCount (state, payload) {
+        localStorage.publishTaskCount = state.publishTaskCount = payload ? payload : 0
+    },
+    setEnergy (state, payload) {
+        localStorage.energy = state.energy = payload ? payload : 0
     }
+
 }
 
 // getters

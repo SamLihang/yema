@@ -15,6 +15,7 @@ import YScroll from '@com/YScroll'
 import TaskBar from '../components/TaskBar'
 import TaskCell from '../components/TaskCell'
 import { getMyInfo,getTaskList } from '../utils/api'
+import { mapGetters } from 'vuex';
 export default {
     name: 'index',
     data () {
@@ -44,25 +45,39 @@ export default {
             this.getList();
         },
         getList() {
-            getTaskList({PageNo:this.page,pageSize:this.pageSize}).then((data) => {
+            getTaskList({pageNo:this.page,pageSize:this.pageSize,platform:this.getPlatNum}).then((data) => {
                 this.taskList = [...this.taskList,...data.data.array]
                 this.$refs.yscroll.forceUpdate()
             })
         }  
     },
+    computed: {
+        ...mapGetters([
+            'getPlatNum'
+        ])
+    },
+    watch: {
+        getPlatNum() {
+            this.pullingDown()
+        }
+    },
     mounted() {
         getMyInfo().then((data) => {
-            let {douyinAccount, weishiAccount, headimgurl, nickname} = data.data
+            let {douyinAccount, weishiAccount, headimgurl, nickname, finishTaskCount, publishTaskCount, energy} = data.data
             this.$store.commit('setHeadImg', headimgurl);
             this.$store.commit('setNickName', nickname);
             this.$store.commit('setWeiAccount', weishiAccount);
             this.$store.commit('setDouAccount', douyinAccount);
+            this.$store.commit('setFinishTaskCount', finishTaskCount);
+            this.$store.commit('setPublishTaskCount', publishTaskCount);
+            this.$store.commit('setEnergy', energy);
         })
         this.getList();
     },
     created() {
         let {openid} = this.$route.query;
-        this.$store.commit('setOpenId', openid);
+        openid && (localStorage.openid = openid);
+        this.$store.commit('setOpenId', localStorage.openid);
     }
 }
 </script>

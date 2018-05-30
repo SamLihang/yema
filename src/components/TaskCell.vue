@@ -3,7 +3,7 @@
     <div class="tast_hot" v-if="data.hot"/>
     <div class="task_header rowBetweenNoWarp">
         <div class="task_msg rowCenterNoWarp">
-            <h2>抖音号: {{data.id}}</h2>
+            <h2>{{getPlatform}}号: {{data.id}}</h2>
         </div>
         <button 
          v-clipboard:copy="data.id"
@@ -35,6 +35,8 @@
 
 <script>
 import { getTaskList } from '@util/api'
+import { mapGetters } from 'vuex'
+
 export default {
     name: 'TaskCell',
     data () {
@@ -58,16 +60,27 @@ export default {
         },
         getTask(id) {
             getTaskList(null, '/'+id, 'post').then(data => {
-
+                if(data.code === 0) {
+                    alert('领取成功～')
+                } else {
+                    alert('领取失败～')
+                }
             })
         },
         completeTask(id) {
             getTaskList(null, '/'+id, 'put').then(data => {
-                
+                if(data.code === 0) {
+                    alert('确认成功～')
+                } else {
+                    alert('确认失败～')
+                }
             })
         }
     },
     computed: {
+        ...mapGetters([
+            'getPlatform'
+        ]),
         createTime () {
             let time = new Date(this.data.createTime)
             let Y = time.getFullYear()

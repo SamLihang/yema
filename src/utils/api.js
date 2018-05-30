@@ -6,16 +6,16 @@ let Request = (url, body, add='', method = 'get') => {
   if (!window.navigator.onLine){
       alert('当前网络不可用~')
   }
-  console.log('url:'+url, 'body:'+body, 'add:'+add, 'method:'+method)
+  console.log('url:'+url, 'body:'+JSON.stringify(body), 'add:'+add, 'method:'+method)
   return new Promise((resolve, reject) => {
         let isSuccess = true;
         let path = host + url + add
-        // if(method === 'get') {
-            // path += '?'
-            // for (let i in body) {
-            //     path += `${i}=${body[i]}&`
-            // }
-        // }
+        if(method === 'get') {
+            path += '?'
+            for (let i in body) {
+                path += `${i}=${body[i]}&`
+            }
+        }
         fetch(path, {
             method,
             body: (body && (method === 'post')) ? JSON.stringify(body) : body,
@@ -47,7 +47,7 @@ const postBindAccountUrl = '/account'
 //我的 get
 const getMyInfoUrl = '/my'
 
-export let getTaskList = (body, add, method = 'get') => {
+export let getTaskList = (body, add='', method = 'get') => {
     return  Request(getTaskListUrl,body, add, method);
 }
 

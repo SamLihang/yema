@@ -86,6 +86,7 @@ input{
   user-select: auto;
   border-radius: 0;  
   border: 0;
+  box-shadow: none;
 }
 
 input[type="submit"], input[type="reset"], input[type="button"], input[type=date], button, select, input[type=text] {
