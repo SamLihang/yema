@@ -47,7 +47,9 @@ export default {
         getList() {
             getTaskList({pageNo:this.page,pageSize:this.pageSize,platform:this.getPlatNum}).then((data) => {
                 this.taskList = [...this.taskList,...data.data.array]
-                this.$refs.yscroll.forceUpdate()
+                setTimeout(() => {
+                    this.$refs.yscroll.forceUpdate()
+                }, 700);
             })
         }  
     },

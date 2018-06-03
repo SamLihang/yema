@@ -2,7 +2,7 @@
   <div class="my_task">
     <y-title />
     <y-scroll ref="yscroll" :height="scrollHeight" @pullingUp="pullingUp" @pullingDown="pullingDown" class="my_task_list" :style="{marginTop:titleHeight+'px'}">
-      <transition-group name="popbottom">      
+      <transition-group name="popbottom" v-if="data.length">      
         <y-cell height="6rem" :link="{path:'/TaskDetaile', query: task}"
          class="y_cell" v-for="(task,index) in data" :key="index" v-if="task" :style="{transitionDelay:index/20+'s'}">
           <img src="../assets/imgs/bc_task.jpg" alt="" slot="icon" class="task_icon">
@@ -28,6 +28,9 @@
           <img src="../assets/imgs/Icon_arrow.png" alt="" class="point" slot="point">
         </y-cell>
       </transition-group>
+      <div v-else class="noTask rowCenterNoWarp">
+        <p>您还没有发布过任务哟，赶快去发布吧～</p>
+      </div>
     </y-scroll>
   </div>
 </template>
@@ -46,18 +49,31 @@ export default {
     },
     data () {
       return {
-        data: null,
+        data: [],
+        page: 1,
+        pageSize: 10,
       }
     },
     props: {
       contentHeight: null,
     },
     methods: {
+      getTask() {
+        getMyTasks({pageNo:this.page,pageSize:this.pageSize}).then(data => {
+          this.data = [...this.data,...data.data.array]
+          setTimeout(() => {
+            this.$refs.yscroll.forceUpdate()
+          }, 700);
+        })
+      },
       pullingUp() {
-        this.$refs.yscroll.forceUpdate()
+        this.page++;        
+        this.getTask()
       },
       pullingDown() {
-        this.$refs.yscroll.forceUpdate()
+        this.page = 1;
+        this.data = [];
+        this.getTask()
       },  
       createTime (timestamp) {
         let time = new Date(timestamp)
@@ -91,9 +107,7 @@ export default {
       }
     },
     mounted() {
-      getMyTasks().then(data => {
-        this.data = data.data.array
-      })
+      this.getTask()
     }
 }
 </script>
@@ -189,6 +203,11 @@ export default {
       .point{
         width: .8rem;
       }
+    }
+    .noTask{
+      width: 100%;
+      height: -webkit-fill-available;
+      height: fill-available;
     }
   }
 </style>

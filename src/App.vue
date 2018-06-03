@@ -88,7 +88,12 @@ export default {
         "count": this.count,
         "remarks": this.remark,
       }).then((data) => {
-        console.log('asdsfd',data)
+        if(data.code === 0){
+          this.$info('发布成功')
+          this.$store.commit('changePop')
+        } else {
+          this.$info('发布失败')
+        }
       })
     },
   },

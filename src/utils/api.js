@@ -6,7 +6,6 @@ let Request = (url, body, add='', method = 'get') => {
   if (!window.navigator.onLine){
       alert('当前网络不可用~')
   }
-  console.log('url:'+url, 'body:'+JSON.stringify(body), 'add:'+add, 'method:'+method)
   return new Promise((resolve, reject) => {
         let isSuccess = true;
         let path = host + url + add
@@ -27,6 +26,7 @@ let Request = (url, body, add='', method = 'get') => {
             isSuccess = response.ok;
             return response.json();
         }).then((response) => {
+            console.log('url:'+url, 'body:'+JSON.stringify(body), 'add:'+add, 'method:'+method)
             console.log('返回',response)                 
             if (isSuccess) {
                 resolve(response);

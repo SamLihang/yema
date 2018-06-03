@@ -12,6 +12,11 @@ import '../node_modules/amfe-flexible/index.js'
 import '../static/css/common.css'
 import '../src/assets/scss/global.scss'
 import VueClipboard from 'vue-clipboard2' //copy
+import '../src/assets/js/zepto.min.js'
+import '../src/utils/dialog.js'
+import '../src/assets/scss/dialog.css'
+
+
 Vue.config.productionTip = false
 Vue.use(Vuex)
 Vue.use(Router)
@@ -53,6 +58,40 @@ Vue.directive('cell', {
     })
   }
 })
+
+Vue.prototype.$alert = (title,content) => {
+  $.dialog({
+    titleText : title,
+    contentHtml : content
+  });
+}
+
+Vue.prototype.$confirm = (content, okFn, cancelFn) => {
+  $.dialog({
+    type : 'confirm',
+    buttonText : {
+        ok : '确定',
+        cancel : '取消'
+    },
+    contentHtml : content,
+    onClickOk : function(){
+      return okFn()
+    },
+    onClickCancel : function(){        		
+      return cancelFn()
+    },
+  });
+}
+
+Vue.prototype.$info = (content) => {
+  $('#btn-09').click(function(){
+    $.dialog({
+       type : 'info',
+       contentHtml : `<p class="info-text">${content}</p>`,
+       autoClose : 2500
+    });
+  });
+}
 
 /* eslint-disable no-new */
 new Vue({
