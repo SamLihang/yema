@@ -81,6 +81,13 @@ export default {
     },
     confirm() {
       postBindAccount({platform: getPlatUserName, account: this.account}).then((data) => {
+        if(data.code === 0){
+          this.$notice('绑定成功～')
+          this.$store.commit('changePop')
+        } else {
+          this.$notice('绑定失败～')
+          this.$store.commit('changePop')
+        }
       })
     },
     releaseConfirm(){
@@ -89,10 +96,11 @@ export default {
         "remarks": this.remark,
       }).then((data) => {
         if(data.code === 0){
-          this.$info('发布成功')
+          this.$notice('发布成功～')
           this.$store.commit('changePop')
         } else {
-          this.$info('发布失败')
+          this.$notice(data.msg)
+          this.$store.commit('changePop')
         }
       })
     },

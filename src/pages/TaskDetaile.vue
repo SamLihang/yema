@@ -20,11 +20,11 @@
           </div>
         </div> 
         <div class="detaile_list">
-          <y-cell class="y_cell" :shadow="false" v-for="(data,index) in dataSource" :key="index">
+          <!-- <y-cell class="y_cell" :shadow="false" v-for="(data,index) in dataSource" :key="index">
             <img src="../assets/imgs/temporary_touxiang.jpg" alt="" slot="icon">
             <h4 slot="text">账号{{accountIndex(index)}}：<span>{{'BEAUT.GR'}}</span></h4>
             <p slot="point">{{createTime(data.createtime)}}</p>
-          </y-cell>
+          </y-cell> -->
         </div>
       </div>
     </div>

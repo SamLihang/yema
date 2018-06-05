@@ -1,7 +1,6 @@
 import "whatwg-fetch"
 import store from '../store'
-const host = "/api"
-
+const host = (process.env.NODE_ENV === 'development') ? '/api' : 'http://gou1234567.com:8081/douyin'
 let Request = (url, body, add='', method = 'get') => {
   if (!window.navigator.onLine){
       alert('当前网络不可用~')
@@ -26,8 +25,8 @@ let Request = (url, body, add='', method = 'get') => {
             isSuccess = response.ok;
             return response.json();
         }).then((response) => {
-            console.log('url:'+url, 'body:'+JSON.stringify(body), 'add:'+add, 'method:'+method)
-            console.log('返回',response)                 
+            // console.log('url:'+url, 'body:'+JSON.stringify(body), 'add:'+add, 'method:'+method)
+            // console.log('返回',response)                 
             if (isSuccess) {
                 resolve(response);
             } else {

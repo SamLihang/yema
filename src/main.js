@@ -67,29 +67,25 @@ Vue.prototype.$alert = (title,content) => {
 }
 
 Vue.prototype.$confirm = (content, okFn, cancelFn) => {
-  $.dialog({
+  $(document).dialog({
     type : 'confirm',
-    buttonText : {
-        ok : '确定',
-        cancel : '取消'
+    content: content,
+    buttonClassConfirm: '确认',
+    buttonClassCancel: '取消',
+    onClickConfirmBtn: () => {
+      return okFn();
     },
-    contentHtml : content,
-    onClickOk : function(){
-      return okFn()
-    },
-    onClickCancel : function(){        		
-      return cancelFn()
+    onClickCancelBtn : () => {
+      return cancelFn();
     },
   });
 }
 
-Vue.prototype.$info = (content) => {
-  $('#btn-09').click(function(){
-    $.dialog({
-       type : 'info',
-       contentHtml : `<p class="info-text">${content}</p>`,
-       autoClose : 2500
-    });
+Vue.prototype.$notice = (content) => {
+  $(document).dialog({
+    type : 'notice',
+    infoText: content,
+    autoClose: 1500
   });
 }
 

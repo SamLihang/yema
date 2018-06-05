@@ -21,9 +21,9 @@
     </div>
     <div class="task_footer rowBetweenNoWarp">
         <div class="task_visit rowStartNoWarp">
+            <!-- <img src="../assets/imgs/temporary_touxiang.jpg" alt="">
             <img src="../assets/imgs/temporary_touxiang.jpg" alt="">
-            <img src="../assets/imgs/temporary_touxiang.jpg" alt="">
-            <p>+{{data.visit}} people visit</p>
+            <p>+{{data.visit}} people visit</p> -->
         </div>
         <div class="task_button">
             <button class="red" @click="getTask(data.id)">领取任务</button>
@@ -53,26 +53,26 @@ export default {
     },
     methods: {
         onCopy: function (e) {
-            alert('复制成功')
+            this.$notice('复制成功')
         },
         onError: function (e) {
-            alert('复制失败')
+            this.$notice('复制失败')
         },
         getTask(id) {
             getTaskList(null, '/'+id, 'post').then(data => {
                 if(data.code === 0) {
-                    alert('领取成功～')
+                    this.$notice('领取成功～')
                 } else {
-                    alert('领取失败～')
+                    this.$notice('领取失败～')
                 }
             })
         },
         completeTask(id) {
             getTaskList(null, '/'+id, 'put').then(data => {
                 if(data.code === 0) {
-                    alert('确认成功～')
+                    this.$notice('确认成功～')
                 } else {
-                    alert('确认失败～')
+                    this.$notice('确认失败～')
                 }
             })
         }
